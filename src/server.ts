@@ -1,10 +1,13 @@
 import express from "express"
 import payload from "payload"
+import cors from 'cors'
 import path from "path"
 
 require("dotenv").config()
 const app = express()
 const PORT = process.env.PORT
+//cors
+app.use(cors())
 // expose assets directory as public
 app.use("/assets", express.static(path.resolve(__dirname, "../assets")))
 

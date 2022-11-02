@@ -1,28 +1,32 @@
-import { buildConfig } from 'payload/config';
-import path from 'path';
+import { buildConfig } from "payload/config"
+import path from "path"
 
 // Graphics
-import Logo from './components/Logo'
-import Icon from './components/Icon';
+import Logo from "./components/Logo"
+import Icon from "./components/Icon"
 
-import Users from './collections/Users';
-import { Media } from './collections/Media';
-const sendEmilPath = path.resolve(__dirname, 'collections/hooks/sendEmail.ts');
-const mockEmailModulePath = path.resolve(__dirname, 'mocks/sendEmail.ts');
+// collections
+import Users from "./collections/Users"
+import { Media } from "./collections/Media"
+import { Library } from "./collections/Library"
+import { Tags } from "./collections/Tags"
+
+const sendEmilPath = path.resolve(__dirname, "collections/hooks/sendEmail.ts")
+const mockEmailModulePath = path.resolve(__dirname, "mocks/sendEmail.ts")
 export default buildConfig({
   serverURL: process.env.SERVER_URL,
   admin: {
     user: Users.slug,
     meta: {
       titleSuffix: "- Payload Auth",
-      favicon: '/assets/favicon.png',
-      ogImage: '/assets/logo.png',
+      favicon: "/assets/favicon.png",
+      ogImage: "/assets/logo.png",
     },
     components: {
       graphics: {
         Logo,
         Icon,
-      }
+      },
     },
     webpack: (config) => ({
       ...config,
@@ -31,18 +35,15 @@ export default buildConfig({
         alias: {
           ...config.resolve.alias,
           [sendEmilPath]: mockEmailModulePath,
-        }
-      }
-    })
+        },
+      },
+    }),
   },
-  collections: [
-    Users,
-    Media,
-  ],
+  collections: [Users, Media, Tags, Library],
   typescript: {
-    outputFile: path.resolve(__dirname, 'payload-types.ts'),
+    outputFile: path.resolve(__dirname, "payload-types.ts"),
   },
   graphQL: {
-    schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
+    schemaOutputFile: path.resolve(__dirname, "generated-schema.graphql"),
   },
-});
+})

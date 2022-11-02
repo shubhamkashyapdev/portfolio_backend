@@ -1,9 +1,9 @@
 import { CollectionConfig } from "payload/types"
-import { isAdmin } from "../access/isAdminOrSelf"
+import { isAdmin } from "../access/isAdmin"
 import { OTPPayload } from "../types"
 import { userRoles } from "../utils/roles"
 import { getToken } from "../utils/utils"
-import { sendEmail } from "./hooks/sendEmail"
+import sendEmail from "./hooks/sendEmail"
 
 const Users: CollectionConfig = {
   slug: "users",
