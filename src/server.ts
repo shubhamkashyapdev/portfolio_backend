@@ -1,6 +1,6 @@
 import express from "express"
 import payload from "payload"
-import cors from 'cors'
+import cors from "cors"
 import path from "path"
 
 require("dotenv").config()
@@ -12,6 +12,9 @@ app.use(cors())
 app.use("/assets", express.static(path.resolve(__dirname, "../assets")))
 
 // Redirect root to Admin panel
+app.get("/health-check", (_, res) => {
+  res.json(`API is working fine at PORT: ${PORT}`)
+})
 app.get("/", (_, res) => {
   res.redirect("/admin")
 })

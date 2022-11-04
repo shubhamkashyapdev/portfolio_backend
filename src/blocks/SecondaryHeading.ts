@@ -1,4 +1,4 @@
-import { Block } from "payload/types"
+import { Block } from "payload/types";
 
 export const SecondaryHeadingBlock: Block = {
   slug: "secondary-heading",
@@ -18,4 +18,4 @@ export const SecondaryHeadingBlock: Block = {
       type: "text",
     },
   ],
-}
+};

@@ -1,5 +1,5 @@
-import { CollectionConfig } from "payload/types"
-import { TitleField } from "../fields"
+import { CollectionConfig } from "payload/types";
+import { TitleField } from "../fields";
 
 export const Tags: CollectionConfig = {
   slug: "tags",
@@ -15,4 +15,4 @@ export const Tags: CollectionConfig = {
       required: true,
     },
   ],
-}
+};

@@ -1,5 +1,5 @@
-import sgMail from "@sendgrid/mail"
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+import sgMail from "@sendgrid/mail";
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const sendEmail = ({ to, subject, html }) => {
   const msg = {
@@ -7,15 +7,15 @@ const sendEmail = ({ to, subject, html }) => {
     from: "saffron.shubham@gmail.com",
     subject,
     html,
-  }
+  };
   sgMail
     .send(msg)
     .then(() => {
-      console.log("Email sent successfully!")
+      console.log("Email sent successfully!");
     })
     .catch((error) => {
-      console.error(error)
-    })
-}
+      console.error(error);
+    });
+};
 
-export default sendEmail
+export default sendEmail;

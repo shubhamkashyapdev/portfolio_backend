@@ -1,18 +1,18 @@
-import { buildConfig } from "payload/config"
-import path from "path"
+import { buildConfig } from "payload/config";
+import path from "path";
 
 // Graphics
-import Logo from "./components/Logo"
-import Icon from "./components/Icon"
+import Logo from "./components/Logo";
+import Icon from "./components/Icon";
 
 // collections
-import Users from "./collections/Users"
-import { Media } from "./collections/Media"
-import { Library } from "./collections/Library"
-import { Tags } from "./collections/Tags"
+import Users from "./collections/Users";
+import { Media } from "./collections/Media";
+import { Library } from "./collections/Library";
+import { Tags } from "./collections/Tags";
 
-const sendEmilPath = path.resolve(__dirname, "collections/hooks/sendEmail.ts")
-const mockEmailModulePath = path.resolve(__dirname, "mocks/sendEmail.ts")
+const sendEmilPath = path.resolve(__dirname, "collections/hooks/sendEmail.ts");
+const mockEmailModulePath = path.resolve(__dirname, "mocks/sendEmail.ts");
 export default buildConfig({
   serverURL: process.env.SERVER_URL,
   admin: {
@@ -46,4 +46,4 @@ export default buildConfig({
   graphQL: {
     schemaOutputFile: path.resolve(__dirname, "generated-schema.graphql"),
   },
-})
+});

@@ -1,4 +1,4 @@
-import { Block } from "payload/types"
+import { Block } from "payload/types";
 
 export const PrimaryHeadingBlock: Block = {
   slug: "primary-heading",
@@ -18,4 +18,4 @@ export const PrimaryHeadingBlock: Block = {
       type: "text",
     },
   ],
-}
+};

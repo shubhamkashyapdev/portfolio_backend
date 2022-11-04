@@ -1,11 +1,11 @@
 export const isAdmin = ({ req: { user } }) => {
-    if (user && user.role === 'admin') {
-        return true;
-    }
+  if (user && user.role === "admin") {
+    return true;
+  }
 
-    return {
-        id: {
-            equals: user.id
-        }
-    }
-}
+  return {
+    id: {
+      equals: user.id,
+    },
+  };
+};

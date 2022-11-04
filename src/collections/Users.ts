@@ -1,9 +1,9 @@
-import { CollectionConfig } from "payload/types"
-import { isAdmin } from "../access/isAdmin"
-import { OTPPayload } from "../types"
-import { userRoles } from "../utils/roles"
-import { getToken } from "../utils/utils"
-import sendEmail from "./hooks/sendEmail"
+import { CollectionConfig } from "payload/types";
+import { isAdmin } from "../access/isAdmin";
+import { OTPPayload } from "../types";
+import { userRoles } from "../utils/roles";
+import { getToken } from "../utils/utils";
+import sendEmail from "./hooks/sendEmail";
 
 const Users: CollectionConfig = {
   slug: "users",
@@ -67,34 +67,34 @@ const Users: CollectionConfig = {
       async ({ req, operation, data }) => {
         if (operation === "create") {
           // check if role is valid
-          const reqUserRole = req?.user?.role
+          const reqUserRole = req?.user?.role;
 
           if (reqUserRole !== "admin" && !userRoles.includes(data.role)) {
-            throw new Error("Invalid Role Assigned To User")
+            throw new Error("Invalid Role Assigned To User");
           }
 
           // generate the email OTP token - max 4 Digits
-          let token = getToken()
+          let token = getToken();
           if (data.role !== "admin") {
             // send the token to user's email address
             sendEmail({
               to: data.email,
               subject: "CresEquity Account Verification Email OTP",
               html: `<h1>Your Verification Code is: ${token}</h1>`,
-            })
+            });
 
-            data.otp = token
+            data.otp = token;
             if (reqUserRole === "admin") {
-              return data
+              return data;
             } else {
-              data.isVerified = "0"
-              return data
+              data.isVerified = "0";
+              return data;
             }
           }
           if (data.role === "admin" && reqUserRole !== "admin") {
             throw new Error(
               "User having role user is not allowed to create user with admin access"
-            )
+            );
           }
         }
       },
@@ -103,9 +103,9 @@ const Users: CollectionConfig = {
       async ({ req: { user } }) => {
         // check if account is verified
         if (Number(user.isVerified)) {
-          return true
+          return true;
         } else {
-          throw new Error("Please Verify Your Account!!")
+          throw new Error("Please Verify Your Account!!");
         }
       },
     ],
@@ -115,28 +115,28 @@ const Users: CollectionConfig = {
       path: "/verify",
       method: "post",
       handler: async (req, res, next) => {
-        const payload = req.payload
-        const body: OTPPayload = req.body
+        const payload = req.payload;
+        const body: OTPPayload = req.body;
 
         if (!body?.id || !body?.otp) {
           return res
             .status(400)
-            .json({ message: "Please provide a valid otp and user ID" })
+            .json({ message: "Please provide a valid otp and user ID" });
         }
         // get user by provided ID
         try {
           const user = await payload.findByID({
             collection: "users",
             id: body.id,
-          })
+          });
           if (!user) {
-            res.status(404).json("No user found with provided user ID")
+            res.status(404).json("No user found with provided user ID");
           }
           // check if account is already verified
           if (Number(user.isVerified)) {
             return res
               .status(200)
-              .json({ message: "User account is already verified!" })
+              .json({ message: "User account is already verified!" });
           }
           if (user.otp === body.otp) {
             // verify the user account
@@ -146,18 +146,18 @@ const Users: CollectionConfig = {
               data: {
                 isVerified: 1,
               },
-            })
-            res.status(200).json({ message: "OTP verified successfully" })
+            });
+            res.status(200).json({ message: "OTP verified successfully" });
           } else {
-            res.status(400).json({ message: "Invalid OTP Provided" })
+            res.status(400).json({ message: "Invalid OTP Provided" });
           }
         } catch (err) {
-          console.log({ err: err.message })
-          res.status(500).json({ message: "Internal Server Error" })
+          console.log({ err: err.message });
+          res.status(500).json({ message: "Internal Server Error" });
         }
       },
     },
   ],
-}
+};
 
-export default Users
+export default Users;

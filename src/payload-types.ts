@@ -5,74 +5,74 @@
  * and re-run `payload generate:types` to regenerate this file.
  */
 
-export interface Config { }
+export interface Config {}
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contact-requests".
  */
 export interface ContactRequest {
-    id: string;
-    message: string;
-    createdAt: string;
-    updatedAt: string;
+  id: string;
+  message: string;
+  createdAt: string;
+  updatedAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
 export interface Media {
-    id: string;
-    alt: string;
-    site: string | Site;
-    url?: string;
-    filename?: string;
-    mimeType?: string;
-    filesize?: number;
-    width?: number;
-    height?: number;
-    createdAt: string;
-    updatedAt: string;
+  id: string;
+  alt: string;
+  site: string | Site;
+  url?: string;
+  filename?: string;
+  mimeType?: string;
+  filesize?: number;
+  width?: number;
+  height?: number;
+  createdAt: string;
+  updatedAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "sites".
  */
 export interface Site {
-    id: string;
-    title: string;
-    createdAt: string;
-    updatedAt: string;
+  id: string;
+  title: string;
+  createdAt: string;
+  updatedAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "pages".
  */
 export interface Page {
-    id: string;
-    title: string;
-    content?: {
-        [k: string]: unknown;
-    }[];
-    site: string | Site;
-    _status?: 'draft' | 'published';
-    createdAt: string;
-    updatedAt: string;
+  id: string;
+  title: string;
+  content?: {
+    [k: string]: unknown;
+  }[];
+  site: string | Site;
+  _status?: "draft" | "published";
+  createdAt: string;
+  updatedAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
-    id: string;
-    firstName: string;
-    lastName: string;
-    roles?: ('admin' | 'editor')[];
-    sites?: string[] | Site[];
-    email?: string;
-    resetPasswordToken?: string;
-    resetPasswordExpiration?: string;
-    loginAttempts?: number;
-    lockUntil?: string;
-    createdAt: string;
-    updatedAt: string;
+  id: string;
+  firstName: string;
+  lastName: string;
+  roles?: ("admin" | "editor")[];
+  sites?: string[] | Site[];
+  email?: string;
+  resetPasswordToken?: string;
+  resetPasswordExpiration?: string;
+  loginAttempts?: number;
+  lockUntil?: string;
+  createdAt: string;
+  updatedAt: string;
 }

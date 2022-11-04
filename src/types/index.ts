@@ -1,16 +1,15 @@
-
 export type OTPPayload = {
-    otp: string;
-    id: string;
-}
+  otp: string;
+  id: string;
+};
 
 export enum UserRole {
-    admin = 'admin',
-    user = 'user',
+  admin = "admin",
+  user = "user",
 }
 
 export type CreateUserDTO = {
-    email: string;
-    password: string;
-    role?: UserRole;
-}
+  email: string;
+  password: string;
+  role?: UserRole;
+};

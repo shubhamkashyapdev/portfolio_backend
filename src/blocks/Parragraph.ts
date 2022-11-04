@@ -1,4 +1,4 @@
-import { Block } from "payload/types"
+import { Block } from "payload/types";
 
 export const ParragraphBlock: Block = {
   slug: "parragraph",
@@ -13,4 +13,4 @@ export const ParragraphBlock: Block = {
       required: true,
     },
   ],
-}
+};

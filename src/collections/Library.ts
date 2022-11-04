@@ -1,10 +1,10 @@
-import { CollectionConfig } from "payload/types"
-import { TagsField, TitleField, ViewsField } from "../fields/index"
-import { isAdmin } from "../access/isAdmin"
-import { PrimaryHeadingBlock } from "../blocks/PrimaryHeading"
-import { SecondaryHeadingBlock } from "../blocks/SecondaryHeading"
-import { ParragraphBlock } from "../blocks/Parragraph"
-import { CodeBlock } from "../blocks/Code"
+import { CollectionConfig } from "payload/types";
+import { TagsField, TitleField, ViewsField } from "../fields/index";
+import { isAdmin } from "../access/isAdmin";
+import { PrimaryHeadingBlock } from "../blocks/PrimaryHeading";
+import { SecondaryHeadingBlock } from "../blocks/SecondaryHeading";
+import { ParragraphBlock } from "../blocks/Parragraph";
+import { CodeBlock } from "../blocks/Code";
 
 export const Library: CollectionConfig = {
   slug: "library",
@@ -45,6 +45,6 @@ export const Library: CollectionConfig = {
       ],
     },
   ],
-}
+};
 
 //@todo - auto generated slug field to be added

@@ -1,11 +1,11 @@
-import { Field } from "payload/types"
+import { Field } from "payload/types";
 
 export const TitleField: Field = {
   name: "title",
   label: "Title",
   type: "text",
   required: true,
-}
+};
 
 export const ViewsField: Field = {
   name: "views",
@@ -17,7 +17,7 @@ export const ViewsField: Field = {
     readOnly: true,
     position: "sidebar",
   },
-}
+};
 
 export const TagsField: Field = {
   name: "tags",
@@ -28,4 +28,4 @@ export const TagsField: Field = {
   admin: {
     position: "sidebar",
   },
-}
+};
