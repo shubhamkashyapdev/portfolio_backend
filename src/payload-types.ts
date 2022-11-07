@@ -8,11 +8,19 @@
 export interface Config {}
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "contact-requests".
+ * via the `definition` "users".
  */
-export interface ContactRequest {
+export interface User {
   id: string;
-  message: string;
+  avatar?: string | Media;
+  role: 'admin' | 'startup' | 'investor';
+  isVerified: '1' | '0';
+  otp?: string;
+  email?: string;
+  resetPasswordToken?: string;
+  resetPasswordExpiration?: string;
+  loginAttempts?: number;
+  lockUntil?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -22,57 +30,97 @@ export interface ContactRequest {
  */
 export interface Media {
   id: string;
-  alt: string;
-  site: string | Site;
   url?: string;
   filename?: string;
   mimeType?: string;
   filesize?: number;
   width?: number;
   height?: number;
+  sizes: {
+    thumbnail: {
+      url?: string;
+      width?: number;
+      height?: number;
+      mimeType?: string;
+      filesize?: number;
+      filename?: string;
+    };
+    card: {
+      url?: string;
+      width?: number;
+      height?: number;
+      mimeType?: string;
+      filesize?: number;
+      filename?: string;
+    };
+    tablet: {
+      url?: string;
+      width?: number;
+      height?: number;
+      mimeType?: string;
+      filesize?: number;
+      filename?: string;
+    };
+  };
   createdAt: string;
   updatedAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "sites".
+ * via the `definition` "tags".
  */
-export interface Site {
+export interface Tag {
   id: string;
   title: string;
+  icon: string;
   createdAt: string;
   updatedAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "pages".
+ * via the `definition` "library".
  */
-export interface Page {
+export interface Library {
   id: string;
   title: string;
-  content?: {
-    [k: string]: unknown;
-  }[];
-  site: string | Site;
-  _status?: "draft" | "published";
-  createdAt: string;
-  updatedAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
- */
-export interface User {
-  id: string;
-  firstName: string;
-  lastName: string;
-  roles?: ("admin" | "editor")[];
-  sites?: string[] | Site[];
-  email?: string;
-  resetPasswordToken?: string;
-  resetPasswordExpiration?: string;
-  loginAttempts?: number;
-  lockUntil?: string;
+  views: number;
+  tags?: string[] | Tag[];
+  tagline: string;
+  'sub-tagline': string;
+  blocks: (
+    | {
+        text: string;
+        classname?: string;
+        id?: string;
+        blockName?: string;
+        blockType: 'primary-heading';
+      }
+    | {
+        text: string;
+        classname?: string;
+        id?: string;
+        blockName?: string;
+        blockType: 'secondary-heading';
+      }
+    | {
+        text: {
+          [k: string]: unknown;
+        }[];
+        id?: string;
+        blockName?: string;
+        blockType: 'parragraph';
+      }
+    | {
+        code: {
+          [k: string]: unknown;
+        }[];
+        language: 'jsx' | 'json';
+        'show-line-numbers'?: boolean;
+        id?: string;
+        blockName?: string;
+        blockType: 'code';
+      }
+  )[];
   createdAt: string;
   updatedAt: string;
 }

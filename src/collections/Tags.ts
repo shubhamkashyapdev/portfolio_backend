@@ -1,10 +1,13 @@
-import { CollectionConfig } from "payload/types";
-import { TitleField } from "../fields";
+import { CollectionConfig } from "payload/types"
+import { TitleField } from "../fields"
 
 export const Tags: CollectionConfig = {
   slug: "tags",
   admin: {
     useAsTitle: "title",
+  },
+  access: {
+    read: () => true,
   },
   fields: [
     TitleField,
@@ -15,4 +18,4 @@ export const Tags: CollectionConfig = {
       required: true,
     },
   ],
-};
+}

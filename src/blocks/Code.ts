@@ -1,4 +1,4 @@
-import { Block } from "payload/types";
+import { Block } from "payload/types"
 
 export const CodeBlock: Block = {
   slug: "code",
@@ -23,10 +23,10 @@ export const CodeBlock: Block = {
       required: true,
     },
     {
-      name: "show-line-numbers",
+      name: "showLineNumbers",
       label: "Show Libe Numbers",
       type: "checkbox",
       defaultValue: false,
     },
   ],
-};
+}

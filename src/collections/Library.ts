@@ -1,10 +1,10 @@
-import { CollectionConfig } from "payload/types";
-import { TagsField, TitleField, ViewsField } from "../fields/index";
-import { isAdmin } from "../access/isAdmin";
-import { PrimaryHeadingBlock } from "../blocks/PrimaryHeading";
-import { SecondaryHeadingBlock } from "../blocks/SecondaryHeading";
-import { ParragraphBlock } from "../blocks/Parragraph";
-import { CodeBlock } from "../blocks/Code";
+import { CollectionConfig } from "payload/types"
+import { TagsField, TitleField, ViewsField } from "../fields/index"
+import { isAdmin } from "../access/isAdmin"
+import { PrimaryHeadingBlock } from "../blocks/PrimaryHeading"
+import { SecondaryHeadingBlock } from "../blocks/SecondaryHeading"
+import { ParragraphBlock } from "../blocks/Parragraph"
+import { CodeBlock } from "../blocks/Code"
 
 export const Library: CollectionConfig = {
   slug: "library",
@@ -28,7 +28,7 @@ export const Library: CollectionConfig = {
       required: true,
     },
     {
-      name: "sub-tagline",
+      name: "subTagline",
       label: "Snippet Sub Tagline",
       type: "text",
       required: true,
@@ -45,6 +45,15 @@ export const Library: CollectionConfig = {
       ],
     },
   ],
-};
+  endpoints: [
+    {
+      path: "/snippets",
+      method: "get",
+      handler: (req, res, next) => {
+        const payload = req.payload
+      },
+    },
+  ],
+}
 
 //@todo - auto generated slug field to be added

@@ -1,4 +1,4 @@
-import { Block } from "payload/types";
+import { Block } from "payload/types"
 
 export const PrimaryHeadingBlock: Block = {
   slug: "primary-heading",
@@ -12,10 +12,5 @@ export const PrimaryHeadingBlock: Block = {
       type: "text",
       required: true,
     },
-    {
-      name: "classname",
-      label: "Primary Heading Tailwind ClassName",
-      type: "text",
-    },
   ],
-};
+}

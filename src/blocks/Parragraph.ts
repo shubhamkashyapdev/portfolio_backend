@@ -1,4 +1,4 @@
-import { Block } from "payload/types";
+import { Block } from "payload/types"
 
 export const ParragraphBlock: Block = {
   slug: "parragraph",
@@ -7,10 +7,10 @@ export const ParragraphBlock: Block = {
   imageAltText: "Parragraph",
   fields: [
     {
-      name: "text",
+      name: "parragraph",
       label: "Primary Heading Text",
       type: "richText",
       required: true,
     },
   ],
-};
+}

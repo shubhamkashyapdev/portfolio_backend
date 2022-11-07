@@ -1,4 +1,4 @@
-import { Block } from "payload/types";
+import { Block } from "payload/types"
 
 export const SecondaryHeadingBlock: Block = {
   slug: "secondary-heading",
@@ -7,15 +7,10 @@ export const SecondaryHeadingBlock: Block = {
   imageAltText: "Secondary Heading",
   fields: [
     {
-      name: "text",
+      name: "secondaryHeading",
       label: "Secondary Heading Text",
       type: "text",
       required: true,
     },
-    {
-      name: "classname",
-      label: "Secondary Heading Tailwind ClassName",
-      type: "text",
-    },
   ],
-};
+}
