@@ -1,4 +1,4 @@
-import { CollectionConfig } from "payload/types";
+import { CollectionConfig } from "payload/types"
 
 export const Media: CollectionConfig = {
   slug: "media",
@@ -10,18 +10,18 @@ export const Media: CollectionConfig = {
       {
         name: "thumbnail",
         width: 400,
-        height: 300,
+        height: null,
         position: "centre",
       },
       {
         name: "card",
         width: 768,
-        height: 1024,
+        height: null,
         position: "centre",
       },
       {
-        name: "tablet",
-        width: 1024,
+        name: "desktop",
+        width: 1440,
         height: null,
         position: "centre",
       },
@@ -29,4 +29,4 @@ export const Media: CollectionConfig = {
     adminThumbnail: "thumbnail",
     mimeTypes: ["image/*"],
   },
-};
+}

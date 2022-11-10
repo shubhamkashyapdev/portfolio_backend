@@ -167,3 +167,5 @@ out
 
 # other files
 media
+build
+dist
