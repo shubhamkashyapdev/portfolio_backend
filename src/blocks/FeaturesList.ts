@@ -12,12 +12,6 @@ export const FeaturesList: Block = {
       type: "array",
       fields: [
         {
-          name: "featureIcon",
-          type: "upload",
-          relationTo: "media",
-          required: true,
-        },
-        {
           name: "featureText",
           type: "text",
           required: true,

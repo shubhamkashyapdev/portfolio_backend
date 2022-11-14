@@ -7,23 +7,16 @@ export const BlockQuote: Block = {
     "https://res.cloudinary.com/hexdev/image/upload/v1668104574/shubhamwebdesign/gcthvyioskulaxw2gxpj.webp",
   imageAltText: "Block Quote",
   fields: [
+    TitleField,
     {
-      name: "blockQuote",
-      label: "Block Quote",
+      name: "icons",
       type: "array",
       fields: [
-        TitleField,
         {
-          name: "icons",
-          type: "array",
-          fields: [
-            {
-              name: "icon",
-              label: "Icon URL",
-              type: "text",
-              required: true,
-            },
-          ],
+          name: "icon",
+          label: "Icon URL",
+          type: "text",
+          required: true,
         },
       ],
     },

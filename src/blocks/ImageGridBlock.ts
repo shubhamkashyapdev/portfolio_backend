@@ -11,34 +11,16 @@ export const ImageGridBlock: Block = {
       type: "array",
       fields: [
         {
-          type: "row",
-          fields: [
-            {
-              name: "imageOneRight",
-              label: "Image Right",
-              type: "upload",
-              relationTo: "media",
-              required: true,
-              admin: {
-                width: "50%",
-              },
-            },
-          ],
+          name: "imageLabel",
+          type: "text",
+          required: true,
         },
         {
-          type: "row",
-          fields: [
-            {
-              name: "imageLeft",
-              label: "Image Left",
-              type: "upload",
-              relationTo: "media",
-              required: true,
-              admin: {
-                width: "50%",
-              },
-            },
-          ],
+          name: "image",
+          label: "Image Right",
+          type: "upload",
+          relationTo: "media",
+          required: true,
         },
       ],
     },
