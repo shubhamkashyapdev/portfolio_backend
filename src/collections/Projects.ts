@@ -54,6 +54,18 @@ const Projects: CollectionConfig = {
       relationTo: "media",
     },
     {
+      name: "tags",
+      label: "Tech Stack",
+      type: "array",
+      fields: [
+        {
+          name: "tag",
+          type: "upload",
+          relationTo: "media",
+        },
+      ],
+    },
+    {
       name: "blocks",
       label: "Project Blocks",
       type: "blocks",
