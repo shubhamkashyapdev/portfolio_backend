@@ -32,24 +32,18 @@ const Users: CollectionConfig = {
       type: "select",
       options: [
         { label: "Admin", value: "admin" },
-        { label: "Startup", value: "startup" },
-        { label: "Investor", value: "investor" },
+        { label: "User", value: "user" },
       ],
       required: true,
-      defaultValue: "startup",
+      defaultValue: "user",
       admin: {
         position: "sidebar",
       },
     },
     {
       name: "isVerified",
-      type: "select",
-      options: [
-        { label: "Verified", value: "1" },
-        { label: "Not Verified", value: "0" },
-      ],
-      defaultValue: "0",
-      required: true,
+      type: "checkbox",
+      defaultValue: false,
       admin: {
         position: "sidebar",
       },
@@ -66,42 +60,43 @@ const Users: CollectionConfig = {
   ],
   timestamps: true,
   hooks: {
-    // beforeChange: [
-    //   async ({ req, operation, data }) => {
-    //     if (operation === "create") {
-    //       // check if role is valid
-    //       const reqUserRole = req?.user?.role
+    beforeChange: [
+      async ({ req, operation, data }) => {
+        if (operation === "create") {
+          // check if role is valid
+          const reqUserRole = req?.user?.role
+          console.log({ user: req?.user, data: data })
 
-    //       if (reqUserRole !== "admin" && !userRoles.includes(data.role)) {
-    //         throw new Error("Invalid Role Assigned To User")
-    //       }
+          if (data.role === "admin" && reqUserRole === "admin") {
+            data.isVerified = true
+            return data
+          }
 
-    //       // generate the email OTP token - max 4 Digits
-    //       let token = getToken()
-    //       if (data.role !== "admin") {
-    //         // send the token to user's email address
-    //         sendEmail({
-    //           to: data.email,
-    //           subject: "CresEquity Account Verification Email OTP",
-    //           html: `<h1>Your Verification Code is: ${token}</h1>`,
-    //         })
+          if (reqUserRole !== "admin" && !userRoles.includes(data.role)) {
+            throw new Error("Invalid Role Assigned To User")
+          }
 
-    //         data.otp = token
-    //         if (reqUserRole === "admin") {
-    //           return data
-    //         } else {
-    //           data.isVerified = "0"
-    //           return data
-    //         }
-    //       }
-    //       if (data.role === "admin" && reqUserRole !== "admin") {
-    //         throw new Error(
-    //           "User having role user is not allowed to create user with admin access"
-    //         )
-    //       }
-    //     }
-    //   },
-    // ],
+          // generate the email OTP token - max 4 Digits
+          let token = getToken()
+          if (data.role !== "admin") {
+            // send the token to user's email address
+            sendEmail({
+              to: data.email,
+              subject: "CresEquity Account Verification Email OTP",
+              html: `<h1>Your Verification Code is: ${token}</h1>`,
+            })
+
+            data.otp = token
+            return data
+          }
+          if (data.role === "admin" && reqUserRole !== "admin") {
+            throw new Error(
+              "User having role user is not allowed to create user with admin access"
+            )
+          }
+        }
+      },
+    ],
     afterLogin: [
       async ({ req: { user } }) => {
         // check if account is verified
