@@ -1,10 +1,11 @@
 import { CollectionConfig } from "payload/types"
-import { TagsField, TitleField, ViewsField } from "../fields/index"
+import { SlugField, TagsField, TitleField, ViewsField } from "../fields/index"
 import { isAdmin } from "../access/isAdmin"
 import { PrimaryHeadingBlock } from "../blocks/PrimaryHeading"
 import { SecondaryHeadingBlock } from "../blocks/SecondaryHeading"
 import { ParragraphBlock } from "../blocks/Parragraph"
 import { CodeBlock } from "../blocks/Code"
+import { formattedSlug } from "../utils/utils"
 
 export const Library: CollectionConfig = {
   slug: "library",
@@ -19,6 +20,7 @@ export const Library: CollectionConfig = {
   },
   fields: [
     TitleField,
+    SlugField,
     ViewsField,
     TagsField,
     {
@@ -45,15 +47,15 @@ export const Library: CollectionConfig = {
       ],
     },
   ],
-  endpoints: [
-    {
-      path: "/snippets",
-      method: "get",
-      handler: (req, res, next) => {
-        const payload = req.payload
+  hooks: {
+    beforeChange: [
+      async ({ req, operation, data }) => {
+        const name = data.name
+        data.slug = formattedSlug(name)
+        return data
       },
-    },
-  ],
+    ],
+  },
 }
 
 //@todo - auto generated slug field to be added

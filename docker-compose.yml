@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginx-c
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+  backend:
+    build: .
+    image: dev1800/portfolio-backend
+    depends_on:
+      - database
+  database:
+    container_name: portfolio-db
+    image: mongo
+    ports:
+      - "27017:27017"
+    command:
+      - --storageEngine=wiredTiger
+    logging:
+      driver: none
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=shubhamwebdesign
+      - MONGO_INITDB_ROOT_PASSWORD=shubhamwebdesign
+    volumes:
+      - database:/data/db
+
+volumes:
+  database:

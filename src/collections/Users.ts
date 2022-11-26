@@ -66,42 +66,42 @@ const Users: CollectionConfig = {
   ],
   timestamps: true,
   hooks: {
-    beforeChange: [
-      async ({ req, operation, data }) => {
-        if (operation === "create") {
-          // check if role is valid
-          const reqUserRole = req?.user?.role
+    // beforeChange: [
+    //   async ({ req, operation, data }) => {
+    //     if (operation === "create") {
+    //       // check if role is valid
+    //       const reqUserRole = req?.user?.role
 
-          if (reqUserRole !== "admin" && !userRoles.includes(data.role)) {
-            throw new Error("Invalid Role Assigned To User")
-          }
+    //       if (reqUserRole !== "admin" && !userRoles.includes(data.role)) {
+    //         throw new Error("Invalid Role Assigned To User")
+    //       }
 
-          // generate the email OTP token - max 4 Digits
-          let token = getToken()
-          if (data.role !== "admin") {
-            // send the token to user's email address
-            sendEmail({
-              to: data.email,
-              subject: "CresEquity Account Verification Email OTP",
-              html: `<h1>Your Verification Code is: ${token}</h1>`,
-            })
+    //       // generate the email OTP token - max 4 Digits
+    //       let token = getToken()
+    //       if (data.role !== "admin") {
+    //         // send the token to user's email address
+    //         sendEmail({
+    //           to: data.email,
+    //           subject: "CresEquity Account Verification Email OTP",
+    //           html: `<h1>Your Verification Code is: ${token}</h1>`,
+    //         })
 
-            data.otp = token
-            if (reqUserRole === "admin") {
-              return data
-            } else {
-              data.isVerified = "0"
-              return data
-            }
-          }
-          if (data.role === "admin" && reqUserRole !== "admin") {
-            throw new Error(
-              "User having role user is not allowed to create user with admin access"
-            )
-          }
-        }
-      },
-    ],
+    //         data.otp = token
+    //         if (reqUserRole === "admin") {
+    //           return data
+    //         } else {
+    //           data.isVerified = "0"
+    //           return data
+    //         }
+    //       }
+    //       if (data.role === "admin" && reqUserRole !== "admin") {
+    //         throw new Error(
+    //           "User having role user is not allowed to create user with admin access"
+    //         )
+    //       }
+    //     }
+    //   },
+    // ],
     afterLogin: [
       async ({ req: { user } }) => {
         // check if account is verified

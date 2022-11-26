@@ -6,11 +6,13 @@ import { ImageGridBlock } from "../blocks/ImageGridBlock"
 import { ParragraphBlock } from "../blocks/Parragraph"
 import { SecondaryHeadingBlock } from "../blocks/SecondaryHeading"
 import {
+  SlugField,
   SubTaglineField,
   TaglineField,
   TitleField,
   ViewsField,
 } from "../fields"
+import { formattedSlug } from "../utils/utils"
 
 const Projects: CollectionConfig = {
   slug: "projects",
@@ -22,6 +24,7 @@ const Projects: CollectionConfig = {
   },
   fields: [
     TitleField,
+    SlugField,
     ViewsField,
     TaglineField,
     SubTaglineField,
@@ -31,6 +34,7 @@ const Projects: CollectionConfig = {
       defaultValue: "Personal Project",
       required: true,
     },
+
     {
       name: "repoURL",
       type: "text",
@@ -79,6 +83,15 @@ const Projects: CollectionConfig = {
       ],
     },
   ],
+  hooks: {
+    beforeChange: [
+      async ({ req, operation, data }) => {
+        const name = data.name
+        data.slug = formattedSlug(name)
+        return data
+      },
+    ],
+  },
 }
 
 export default Projects

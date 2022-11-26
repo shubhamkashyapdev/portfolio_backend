@@ -6,6 +6,24 @@ export const TitleField: Field = {
   type: "text",
   required: true,
 }
+export const SlugField: Field = {
+  name: "slug",
+  label: "Slug",
+  type: "text",
+  admin: {
+    position: "sidebar",
+  },
+}
+
+export const ReadTimeField: Field = {
+  name: "readTime",
+  type: "number",
+  defaultValue: 5,
+  required: true,
+  admin: {
+    position: "sidebar",
+  },
+}
 
 export const ViewsField: Field = {
   name: "views",

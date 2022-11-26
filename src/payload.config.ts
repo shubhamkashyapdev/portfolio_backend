@@ -9,8 +9,9 @@ import Icon from "./components/Icon"
 import Users from "./collections/Users"
 import { Media } from "./collections/Media"
 import { Library } from "./collections/Library"
-import { Tags } from "./collections/Tags"
 import { Projects } from "./collections"
+
+import { Tags, Categories, Posts } from "./collections"
 
 const sendEmilPath = path.resolve(__dirname, "collections/hooks/sendEmail.ts")
 const mockEmailModulePath = path.resolve(__dirname, "mocks/sendEmail.ts")
@@ -40,11 +41,12 @@ export default buildConfig({
       },
     }),
   },
-  collections: [Users, Media, Tags, Library, Projects],
+  collections: [Users, Media, Tags, Library, Projects, Categories, Posts],
   typescript: {
     outputFile: path.resolve(__dirname, "payload-types.ts"),
   },
   graphQL: {
     schemaOutputFile: path.resolve(__dirname, "generated-schema.graphql"),
+    disablePlaygroundInProduction: true,
   },
 })

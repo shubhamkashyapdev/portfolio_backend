@@ -1,21 +1,42 @@
 import { CollectionConfig } from "payload/types"
-import { TitleField } from "../fields"
+import { isAdmin } from "../access/isAdmin"
+import { formattedSlug } from "../utils/utils"
 
-export const Tags: CollectionConfig = {
+const Tags: CollectionConfig = {
   slug: "tags",
   admin: {
-    useAsTitle: "title",
+    useAsTitle: "name",
   },
   access: {
     read: () => true,
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
   },
   fields: [
-    TitleField,
     {
-      name: "icon",
-      label: "Tag Icon URL",
+      name: "name",
       type: "text",
       required: true,
     },
+    {
+      name: "slug",
+      type: "text",
+      admin: {
+        position: "sidebar",
+      },
+    },
   ],
+  timestamps: false,
+  hooks: {
+    beforeChange: [
+      async ({ req, operation, data }) => {
+        const name = data.name
+        data.slug = formattedSlug(name)
+        return data
+      },
+    ],
+  },
 }
+
+export default Tags
