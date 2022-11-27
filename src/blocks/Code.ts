@@ -1,6 +1,6 @@
 import { Block } from "payload/types"
 
-export const CodeBlock: Block = {
+const CodeBlock: Block = {
   slug: "code",
   imageURL:
     "https://res.cloudinary.com/hexdev/image/upload/v1667408000/shubhamwebdesign/vmrlmd6iw6dsn2v1ofvw.webp",
@@ -30,3 +30,5 @@ export const CodeBlock: Block = {
     },
   ],
 }
+
+export default CodeBlock

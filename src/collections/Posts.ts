@@ -1,11 +1,14 @@
 import { CollectionConfig } from "payload/types"
-import { BlockQuote } from "../blocks/BlockQuote"
-import { CodeBlock } from "../blocks/Code"
-import { FeaturesList } from "../blocks/FeaturesList"
-import { ImageBlock } from "../blocks/ImageBlock"
-import { ImageGridBlock } from "../blocks/ImageGridBlock"
-import { PrimaryHeadingBlock } from "../blocks/PrimaryHeading"
-import { SecondaryHeadingBlock } from "../blocks/SecondaryHeading"
+import {
+  BlockQuote,
+  CodeBlock,
+  FeaturesListBlock,
+  ImageBlock,
+  ImageGridBlock,
+  ParragraphBlock,
+  PrimaryHeadingBlock,
+  SecondaryHeadingBlock,
+} from "../blocks"
 import { TitleField, SlugField, ReadTimeField, ViewsField } from "../fields"
 import { formattedSlug } from "../utils/utils"
 
@@ -32,17 +35,15 @@ const Posts: CollectionConfig = {
       },
     },
     {
-      name: "readTime",
-      type: "number",
-      defaultValue: 5,
-      required: true,
-    },
-    {
       name: "author",
       type: "relationship",
       relationTo: "users",
     },
-
+    {
+      name: "featuredImage",
+      type: "upload",
+      relationTo: "media",
+    },
     {
       name: "category",
       type: "relationship",
@@ -82,21 +83,22 @@ const Posts: CollectionConfig = {
       name: "blocks",
       type: "blocks",
       blocks: [
-        CodeBlock,
         PrimaryHeadingBlock,
         SecondaryHeadingBlock,
+        ParragraphBlock,
         BlockQuote,
-        FeaturesList,
-        ImageBlock,
+        CodeBlock,
+        FeaturesListBlock,
         ImageGridBlock,
+        ImageBlock,
       ],
     },
   ],
   hooks: {
     beforeChange: [
-      async ({ req, operation, data }) => {
-        const name = data.name
-        data.slug = formattedSlug(name)
+      async ({ data }) => {
+        const title = data.title
+        data.slug = formattedSlug(title)
         return data
       },
     ],

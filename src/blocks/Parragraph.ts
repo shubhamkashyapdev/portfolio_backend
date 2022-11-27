@@ -1,6 +1,6 @@
 import { Block } from "payload/types"
 
-export const ParragraphBlock: Block = {
+const ParragraphBlock: Block = {
   slug: "parragraph",
   imageURL:
     "https://res.cloudinary.com/hexdev/image/upload/v1667407772/shubhamwebdesign/sntxec3ngztaww4ykb39.webp",
@@ -14,3 +14,4 @@ export const ParragraphBlock: Block = {
     },
   ],
 }
+export default ParragraphBlock

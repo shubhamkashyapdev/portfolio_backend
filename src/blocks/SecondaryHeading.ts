@@ -1,6 +1,6 @@
 import { Block } from "payload/types"
 
-export const SecondaryHeadingBlock: Block = {
+const SecondaryHeadingBlock: Block = {
   slug: "secondary-heading",
   imageURL:
     "https://res.cloudinary.com/hexdev/image/upload/v1667406925/shubhamwebdesign/y5xux1di3wuduguqcemx.webp",
@@ -14,3 +14,4 @@ export const SecondaryHeadingBlock: Block = {
     },
   ],
 }
+export default SecondaryHeadingBlock

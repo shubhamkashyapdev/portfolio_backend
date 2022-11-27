@@ -1,6 +1,6 @@
 import { Block } from "payload/types"
 
-export const FeaturesList: Block = {
+const FeaturesList: Block = {
   slug: "featureslist",
   imageURL:
     "https://res.cloudinary.com/hexdev/image/upload/v1668104431/shubhamwebdesign/tgdvszih2xrreckzbuuw.webp",
@@ -20,3 +20,4 @@ export const FeaturesList: Block = {
     },
   ],
 }
+export default FeaturesList

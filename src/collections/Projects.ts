@@ -1,10 +1,14 @@
 import { CollectionConfig } from "payload/types"
-import { BlockQuote } from "../blocks/BlockQuote"
-import { FeaturesList } from "../blocks/FeaturesList"
-import { ImageBlock } from "../blocks/ImageBlock"
-import { ImageGridBlock } from "../blocks/ImageGridBlock"
-import { ParragraphBlock } from "../blocks/Parragraph"
-import { SecondaryHeadingBlock } from "../blocks/SecondaryHeading"
+import {
+  PrimaryHeadingBlock,
+  BlockQuote,
+  CodeBlock,
+  FeaturesListBlock,
+  ImageBlock,
+  ImageGridBlock,
+  ParragraphBlock,
+  SecondaryHeadingBlock,
+} from "../blocks"
 import {
   SlugField,
   SubTaglineField,
@@ -59,25 +63,24 @@ const Projects: CollectionConfig = {
     },
     {
       name: "tags",
-      label: "Tech Stack",
-      type: "array",
-      fields: [
-        {
-          name: "tag",
-          type: "upload",
-          relationTo: "media",
-        },
-      ],
+      type: "relationship",
+      relationTo: "tags",
+      hasMany: true,
+      admin: {
+        position: "sidebar",
+      },
     },
     {
       name: "blocks",
       label: "Project Blocks",
       type: "blocks",
       blocks: [
-        FeaturesList,
-        BlockQuote,
+        PrimaryHeadingBlock,
         SecondaryHeadingBlock,
         ParragraphBlock,
+        BlockQuote,
+        CodeBlock,
+        FeaturesListBlock,
         ImageBlock,
         ImageGridBlock,
       ],
@@ -85,9 +88,9 @@ const Projects: CollectionConfig = {
   ],
   hooks: {
     beforeChange: [
-      async ({ req, operation, data }) => {
-        const name = data.name
-        data.slug = formattedSlug(name)
+      async ({ data }) => {
+        const title = data.title
+        data.slug = formattedSlug(title)
         return data
       },
     ],

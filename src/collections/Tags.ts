@@ -1,11 +1,12 @@
 import { CollectionConfig } from "payload/types"
 import { isAdmin } from "../access/isAdmin"
+import { SlugField, TitleField } from "../fields"
 import { formattedSlug } from "../utils/utils"
 
 const Tags: CollectionConfig = {
   slug: "tags",
   admin: {
-    useAsTitle: "name",
+    useAsTitle: "title",
   },
   access: {
     read: () => true,
@@ -14,25 +15,20 @@ const Tags: CollectionConfig = {
     delete: isAdmin,
   },
   fields: [
+    TitleField,
+    SlugField,
     {
-      name: "name",
-      type: "text",
-      required: true,
-    },
-    {
-      name: "slug",
-      type: "text",
-      admin: {
-        position: "sidebar",
-      },
+      name: "icon",
+      type: "upload",
+      relationTo: "media",
     },
   ],
   timestamps: false,
   hooks: {
     beforeChange: [
-      async ({ req, operation, data }) => {
-        const name = data.name
-        data.slug = formattedSlug(name)
+      async ({ data }) => {
+        const title = data.title
+        data.slug = formattedSlug(title)
         return data
       },
     ],

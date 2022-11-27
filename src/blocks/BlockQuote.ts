@@ -1,7 +1,7 @@
 import { Block } from "payload/types"
 import { TitleField } from "../fields"
 
-export const BlockQuote: Block = {
+const BlockQuote: Block = {
   slug: "blockquote",
   imageURL:
     "https://res.cloudinary.com/hexdev/image/upload/v1668104574/shubhamwebdesign/gcthvyioskulaxw2gxpj.webp",
@@ -22,3 +22,5 @@ export const BlockQuote: Block = {
     },
   ],
 }
+
+export default BlockQuote
