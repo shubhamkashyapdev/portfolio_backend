@@ -2,12 +2,25 @@ import express from "express"
 import payload from "payload"
 import cors from "cors"
 import path from "path"
-
+import { mediaManagement } from "payload-cloudinary-plugin"
 require("dotenv").config()
 const app = express()
 const PORT = process.env.PORT
 //cors
 app.use(cors())
+app.use(
+  mediaManagement(
+    {
+      cloud_name: "hexdev",
+      api_key: "285169721278124",
+      api_secret: "fH-ZRXWDqW3GNkHOj7RmLq0JLX8",
+      secure: true,
+    },
+    {
+      folder: "shubhamwebdesign",
+    }
+  )
+)
 // expose assets directory as public
 app.use("/assets", express.static(path.resolve(__dirname, "../assets")))
 

@@ -1,12 +1,18 @@
 import { CollectionConfig } from "payload/types"
-
 export const Media: CollectionConfig = {
   slug: "media",
-  fields: [],
+  fields: [
+    {
+      name: "alt",
+      type: "text",
+      required: true,
+    },
+  ],
   access: {
     read: () => true,
   },
   upload: {
+    disableLocalStorage: true,
     staticURL: "/media",
     staticDir: "media",
     imageSizes: [

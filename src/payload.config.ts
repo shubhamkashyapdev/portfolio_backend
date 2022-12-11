@@ -11,6 +11,7 @@ import { Media } from "./collections/Media"
 import { Library } from "./collections/Library"
 
 import { Tags, Categories, Posts, Projects } from "./collections"
+import cloudinaryPlugin from "payload-cloudinary-plugin/dist/plugins"
 
 export default buildConfig({
   serverURL: process.env.SERVER_URL,
@@ -46,5 +47,6 @@ export default buildConfig({
       collections: ["library", "posts", "projects"],
       uploadsCollection: "media",
     }),
+    cloudinaryPlugin(),
   ],
 })
