@@ -1,6 +1,6 @@
 import { buildConfig } from "payload/config"
 import path from "path"
-
+import seo from "@payloadcms/plugin-seo"
 // Graphics
 import Logo from "./components/Logo"
 import Icon from "./components/Icon"
@@ -48,4 +48,15 @@ export default buildConfig({
     schemaOutputFile: path.resolve(__dirname, "generated-schema.graphql"),
     disablePlaygroundInProduction: true,
   },
+  rateLimit: {
+    trustProxy: true,
+    window: 2 * 60 * 1000, // 2 minutes
+    max: 2400, // limit each IP per windowMs
+  },
+  plugins: [
+    seo({
+      collections: ["library", "posts", "projects"],
+      uploadsCollection: "media",
+    }),
+  ],
 })
