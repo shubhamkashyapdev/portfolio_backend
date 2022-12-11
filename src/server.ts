@@ -8,16 +8,17 @@ const app = express()
 const PORT = process.env.PORT
 //cors
 app.use(cors())
+console.log(process.env.API_KEY)
 app.use(
   mediaManagement(
     {
-      cloud_name: "hexdev",
-      api_key: "285169721278124",
-      api_secret: "fH-ZRXWDqW3GNkHOj7RmLq0JLX8",
+      cloud_name: process.env.CLOUD_NAME,
+      api_key: process.env.API_KEY,
+      api_secret: process.env.API_SECRET,
       secure: true,
     },
     {
-      folder: "shubhamwebdesign",
+      folder: process.env.FOLDER,
     }
   )
 )
