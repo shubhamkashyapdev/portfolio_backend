@@ -3,7 +3,6 @@ import { isAdmin } from "../access/isAdmin"
 import { OTPPayload } from "../types"
 import { userRoles } from "../utils/roles"
 import { getToken } from "../utils/utils"
-import sendEmail from "./hooks/sendEmail"
 
 const Users: CollectionConfig = {
   slug: "users",
@@ -79,13 +78,6 @@ const Users: CollectionConfig = {
           // generate the email OTP token - max 4 Digits
           let token = getToken()
           if (data.role !== "admin") {
-            // send the token to user's email address
-            sendEmail({
-              to: data.email,
-              subject: "CresEquity Account Verification Email OTP",
-              html: `<h1>Your Verification Code is: ${token}</h1>`,
-            })
-
             data.otp = token
             return data
           }

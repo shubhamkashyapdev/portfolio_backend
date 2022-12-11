@@ -12,8 +12,6 @@ import { Library } from "./collections/Library"
 
 import { Tags, Categories, Posts, Projects } from "./collections"
 
-const sendEmilPath = path.resolve(__dirname, "collections/hooks/sendEmail.ts")
-const mockEmailModulePath = path.resolve(__dirname, "mocks/sendEmail.ts")
 export default buildConfig({
   serverURL: process.env.SERVER_URL,
   admin: {
@@ -29,16 +27,6 @@ export default buildConfig({
         Icon,
       },
     },
-    webpack: (config) => ({
-      ...config,
-      resolve: {
-        ...config.resolve,
-        alias: {
-          ...config.resolve.alias,
-          [sendEmilPath]: mockEmailModulePath,
-        },
-      },
-    }),
   },
   collections: [Users, Media, Tags, Library, Projects, Categories, Posts],
   typescript: {
