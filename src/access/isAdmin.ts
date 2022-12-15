@@ -1,5 +1,5 @@
 export const isAdmin = ({ req: { user } }) => {
-  if (user && user.role === "admin") {
+  if (user && user?.role === "admin") {
     return true
   }
 

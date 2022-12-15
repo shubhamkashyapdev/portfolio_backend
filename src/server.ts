@@ -8,7 +8,6 @@ const app = express()
 const PORT = process.env.PORT
 //cors
 app.use(cors())
-console.log(process.env.API_KEY)
 app.use(
   mediaManagement(
     {

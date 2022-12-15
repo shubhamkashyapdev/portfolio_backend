@@ -21,7 +21,7 @@ export const Library: CollectionConfig = {
   access: {
     read: () => true,
     create: isAdmin,
-    update: isAdmin,
+    update: () => true,
     delete: isAdmin,
   },
   fields: [
@@ -66,4 +66,40 @@ export const Library: CollectionConfig = {
       },
     ],
   },
+  endpoints: [
+    {
+      method: "patch",
+      path: "/views/:snippetId",
+      handler: async (req, res, next) => {
+        const snippetId = req.params.snippetId
+        const payload = req.payload
+        try {
+          const item = await payload.findByID({
+            collection: "library",
+            id: snippetId,
+          })
+          const views = item.views
+          if (item) {
+            const updatedItem = await payload.update({
+              collection: "library",
+              id: snippetId,
+              data: {
+                views: 10,
+              },
+            })
+
+            return res.status(200).json({
+              success: true,
+              data: updatedItem,
+            })
+          }
+        } catch (err: any) {
+          res.status(500).json({
+            success: false,
+            message: err.message,
+          })
+        }
+      },
+    },
+  ],
 }

@@ -59,36 +59,36 @@ const Users: CollectionConfig = {
   ],
   timestamps: true,
   hooks: {
-    // beforeChange: [
-    //   async ({ req, operation, data }) => {
-    //     if (operation === "create") {
-    //       // check if role is valid
-    //       const reqUserRole = req?.user?.role
-    //       console.log({ user: req?.user, data: data })
+    beforeChange: [
+      async ({ req, operation, data }) => {
+        if (operation === "create") {
+          // check if role is valid
+          const reqUserRole = req?.user?.role
+          console.log({ user: req?.user, data: data })
 
-    //       if (data.role === "admin" && reqUserRole === "admin") {
-    //         data.isVerified = true
-    //         return data
-    //       }
+          if (data.role === "admin" && reqUserRole === "admin") {
+            data.isVerified = true
+            return data
+          }
 
-    //       if (reqUserRole !== "admin" && !userRoles.includes(data.role)) {
-    //         throw new Error("Invalid Role Assigned To User")
-    //       }
+          if (reqUserRole !== "admin" && !userRoles.includes(data.role)) {
+            throw new Error("Invalid Role Assigned To User")
+          }
 
-    //       // generate the email OTP token - max 4 Digits
-    //       let token = getToken()
-    //       if (data.role !== "admin") {
-    //         data.otp = token
-    //         return data
-    //       }
-    //       if (data.role === "admin" && reqUserRole !== "admin") {
-    //         throw new Error(
-    //           "User having role user is not allowed to create user with admin access"
-    //         )
-    //       }
-    //     }
-    //   },
-    // ],
+          // generate the email OTP token - max 4 Digits
+          let token = getToken()
+          if (data.role !== "admin") {
+            data.otp = token
+            return data
+          }
+          if (data.role === "admin" && reqUserRole !== "admin") {
+            throw new Error(
+              "User having role user is not allowed to create user with admin access"
+            )
+          }
+        }
+      },
+    ],
     afterLogin: [
       async ({ req: { user } }) => {
         // check if account is verified

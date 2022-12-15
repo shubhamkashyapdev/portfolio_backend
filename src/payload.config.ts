@@ -47,6 +47,7 @@ export default buildConfig({
       collections: ["library", "posts", "projects"],
       uploadsCollection: "media",
     }),
+    //@ts-ignore
     cloudinaryPlugin(),
   ],
 })
