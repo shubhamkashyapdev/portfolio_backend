@@ -10,7 +10,7 @@ import Users from "./collections/Users"
 import { Media } from "./collections/Media"
 import { Library } from "./collections/Library"
 
-import { Tags, Categories, Posts, Projects } from "./collections"
+import { Tags, Categories, Posts, Projects, Boilerplate } from "./collections"
 import cloudinaryPlugin from "payload-cloudinary-plugin/dist/plugins"
 
 export default buildConfig({
@@ -29,7 +29,7 @@ export default buildConfig({
       },
     },
   },
-  collections: [Users, Media, Tags, Library, Projects, Categories, Posts],
+  collections: [Users, Media, Tags, Library, Projects, Categories, Posts, Boilerplate],
   typescript: {
     outputFile: path.resolve(__dirname, "payload-types.ts"),
   },
