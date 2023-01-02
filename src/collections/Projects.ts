@@ -34,8 +34,17 @@ const Projects: CollectionConfig = {
     SubTaglineField,
     {
       name: "projectType",
-      type: "text",
-      defaultValue: "Personal Project",
+      type: "radio",
+      options: [
+        {
+          label: 'Public',
+          value: 'public',
+        },
+        {
+          label: "Private",
+          value: 'private',
+        }
+      ],
       required: true,
     },
 
@@ -45,14 +54,15 @@ const Projects: CollectionConfig = {
       required: true,
       admin: {
         position: "sidebar",
+        condition: (data) => data.projectType === 'public' ? true : false
       },
     },
     {
       name: "liveSiteURL",
       type: "text",
-      required: true,
       admin: {
         position: "sidebar",
+        condition: (data) => data.projectType === 'public' ? true : false
       },
     },
     {
