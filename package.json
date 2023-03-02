@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run serve",
-    "dev": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts nodemon -L",
+    "dev": "cross-env NODE_ENV=production PAYLOAD_CONFIG_PATH=src/payload.config.ts nodemon -L",
     "build:payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload build",
     "build:server": "tsc",
     "build": "yarn copyfiles && yarn build:payload && yarn build:server",

@@ -29,7 +29,16 @@ export default buildConfig({
       },
     },
   },
-  collections: [Users, Media, Tags, Library, Projects, Categories, Posts, Boilerplate],
+  collections: [
+    Users,
+    Media,
+    Tags,
+    Library,
+    Projects,
+    Categories,
+    Posts,
+    Boilerplate,
+  ],
   typescript: {
     outputFile: path.resolve(__dirname, "payload-types.ts"),
   },
