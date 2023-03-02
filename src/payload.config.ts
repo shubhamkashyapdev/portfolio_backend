@@ -1,21 +1,22 @@
-import { buildConfig } from "payload/config"
-import path from "path"
-import seo from "@payloadcms/plugin-seo"
+import { buildConfig } from "payload/config";
+import path from "path";
+import seo from "@payloadcms/plugin-seo";
 // Graphics
-import Logo from "./components/Logo"
-import Icon from "./components/Icon"
+import Logo from "./components/Logo";
+import Icon from "./components/Icon";
 
 // collections
-import Users from "./collections/Users"
-import { Media } from "./collections/Media"
-import { Library } from "./collections/Library"
+import Users from "./collections/Users";
+import { Media } from "./collections/Media";
+import { Library } from "./collections/Library";
 
-import { Tags, Categories, Posts, Projects, Boilerplate } from "./collections"
-import cloudinaryPlugin from "payload-cloudinary-plugin/dist/plugins"
+import { Tags, Categories, Posts, Projects, Boilerplate } from "./collections";
+import cloudinaryPlugin from "payload-cloudinary-plugin/dist/plugins";
 
 export default buildConfig({
   serverURL: process.env.SERVER_URL,
   admin: {
+    disable: process.env.NODE_ENV === "production" ? true : false,
     user: Users.slug,
     meta: {
       titleSuffix: "- Payload Auth",
@@ -59,4 +60,4 @@ export default buildConfig({
     //@ts-ignore
     cloudinaryPlugin(),
   ],
-})
+});
